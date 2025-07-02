@@ -1,0 +1,19 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Airtable Social Posts",
+  "name_for_model": "airtableSocialPosts",
+  "description_for_human": "Manage your Social Posts in Airtable — create, list, retrieve, and delete records.",
+  "description_for_model": "Plugin to manage social post records in Airtable. Use it to list, create, retrieve, or delete records in the 'Social Posts' table.",
+  "auth": {
+    "type": "user_http",
+    "authorization_type": "bearer"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://lenakimagency.github.io/airtable-openapi/openapi.yaml",
+    "has_user_authentication": true
+  },
+  "logo_url": "https://lenakimagency.github.io/airtable-openapi/logo.png",
+  "contact_email": "support@example.com",
+  "legal_info_url": "https://example.com/legal"
+}

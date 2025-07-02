@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Airtable API for Social Posts
+  description: Access and manage records in the "Social Posts" table of your Airtable base.
+  version: 1.1.0
+servers:
+  - url: https://api.airtable.com/v0
+    description: Airtable API base server
+paths:
+  /appNC9fkD5lD0OrcY/Social%20Posts:
+    get:
+      operationId: listSocialPosts
+      summary: List records from the "Social Posts" table
+      parameters:
+        - in: query
+          name: maxRecords
+          schema:
+            type: integer
+            default: 100
+        - in: query
+          name: view
+          schema:
+            type: string
+            example: viwP2DBv5wzkdq8DP
+            description: Optional view ID to filter records
+      responses:
+        '200':
+          description: A list of social post records
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      operationId: createSocialPost
+      summary: Create a new record in the "Social Posts" table
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: object
+                  properties:
+                    Scheduled Date:
+                      type: string
+                      format: date
+                    Platform:
+                      type: string
+                    Category:
+                      type: string
+                    Post Title:
+                      type: string
+                    Post Body:
+                      type: string
+                    Hashtags:
+                      type: string
+                    Design Notes:
+                      type: string
+                    Image URL:
+                      type: string
+                      nullable: true
+                    Status:
+                      type: string
+                    Published Date:
+                      type: string
+                      nullable: true
+                    Post ID:
+                      type: string
+                      nullable: true
+      responses:
+        '200':
+          description: Created record
+          content:
+            application/json:
+              schema:
+                type: object
+  /appNC9fkD5lD0OrcY/Social%20Posts/{recordId}:
+    get:
+      operationId: getSocialPostById
+      summary: Retrieve a specific "Social Posts" record by ID
+      parameters:
+        - in: path
+          name: recordId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Record details
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      operationId: deleteSocialPost
+      summary: Delete a record from "Social Posts" by ID
+      parameters:
+        - in: path
+          name: recordId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Record deleted
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
